@@ -91,7 +91,7 @@ UncommunicativeVariableName:
   enabled: true
   exclude: []
   reject:
-  - !ruby/regexp /^.$/
+  - !ruby/regexp /^[^_]$/
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
   accept: []
