@@ -62,7 +62,9 @@ TooManyMethods:
   max_methods: 15
 TooManyStatements:
   enabled: true
-  exclude: []
+  exclude:
+  - Ashikawa::Core::Connection#initialize
+  - Ashikawa::Core::Figure#initialize
   max_statements: 5
 UncommunicativeMethodName:
   enabled: true
