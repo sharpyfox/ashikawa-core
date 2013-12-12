@@ -103,7 +103,7 @@ module Ashikawa
       # @return [Hash] The parsed body
       # @api private
       def parse_json(env)
-        fail JSON::ParserError unless json_content_type?(env[:response_headers]['content-type'])
+        raise JSON::ParserError unless json_content_type?(env[:response_headers]['content-type'])
         JSON.parse(env[:body])
       rescue JSON::ParserError
         raise Ashikawa::Core::JsonError

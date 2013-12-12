@@ -46,7 +46,7 @@ describe Ashikawa::Core::Connection do
       [200, response_headers, JSON.generate({ 'name' => 'dude' })]
     end
 
-    subject.send_request 'my/path', delete: { }
+    subject.send_request 'my/path', delete: {}
     request_stub.verify_stubbed_calls
   end
 
