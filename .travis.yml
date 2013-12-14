@@ -6,13 +6,14 @@ rvm:
   - 2.0.0
   - jruby-19mode
   - jruby-head
-  - rbx-19mode
+  - rbx-2.2.1
   - ruby-head
 env:
-  - ARANGODB_DISABLE_AUTHENTIFICATION=true VERSION=1.4.devel
-  - ARANGODB_DISABLE_AUTHENTIFICATION=false VERSION=1.4.devel
+  - ARANGODB_DISABLE_AUTHENTIFICATION=true VERSION=1.4.2
+  # - ARANGODB_DISABLE_AUTHENTIFICATION=false VERSION=1.4.2
 matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
+    - rvm: rbx-2.2.1
 script: "bundle exec rake ci"
