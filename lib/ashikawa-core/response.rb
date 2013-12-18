@@ -37,7 +37,28 @@ module Ashikawa
         end
       end
 
+      # Parsed version of the body
+      #
+      # @param [Hash] env Environment info
+      # @return [Hash] The parsed body
+      # @api private
+      def parsed_body
+        raise JSON::ParserError unless json_content_type?(@env[:response_headers]['content-type'])
+        JSON.parse(@env[:body])
+      rescue JSON::ParserError
+        raise Ashikawa::Core::JsonError
+      end
+
       private
+
+      # Check if the Content Type is JSON
+      #
+      # @param [String] content_type
+      # @return [Boolean]
+      # @api private
+      def json_content_type?(content_type)
+        content_type == 'application/json; charset=utf-8'
+      end
 
       # Raise a Bad Syntax Error
       #

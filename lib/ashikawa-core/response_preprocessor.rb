@@ -28,32 +28,11 @@ module Ashikawa
           log(env)
           response = Response.new(env)
           response.handle_status
-          env[:body] = parse_json(env)
+          env[:body] = response.parsed_body
         end
       end
 
       private
-
-      # Parse the JSON
-      #
-      # @param [Hash] env Environment info
-      # @return [Hash] The parsed body
-      # @api private
-      def parse_json(env)
-        raise JSON::ParserError unless json_content_type?(env[:response_headers]['content-type'])
-        JSON.parse(env[:body])
-      rescue JSON::ParserError
-        raise Ashikawa::Core::JsonError
-      end
-
-      # Check if the Content Type is JSON
-      #
-      # @param [String] content_type
-      # @return [Boolean]
-      # @api private
-      def json_content_type?(content_type)
-        content_type == 'application/json; charset=utf-8'
-      end
 
       # Log a Request
       #
