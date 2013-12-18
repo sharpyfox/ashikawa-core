@@ -3,7 +3,7 @@
 | Project         | Ashikawa::Core
 |:----------------|:--------------------------------------------------
 | Homepage        | http://triagens.github.io/ashikawa-core/
-| Documentation   | http://www.rubydoc.info/github/triAGENS/ashikawa-core
+| Documentation   | [RubyDoc](http://www.rubydoc.info/gems/ashikawa-core)
 | CI              | [![Build Status](https://secure.travis-ci.org/triAGENS/ashikawa-core.png?branch=master)](http://travis-ci.org/triAGENS/ashikawa-core)
 | Code Metrics    | [![Code Climate](https://codeclimate.com/github/triAGENS/ashikawa-core.png)](https://codeclimate.com/github/triAGENS/ashikawa-core) [![Coverage Status](https://coveralls.io/repos/triAGENS/ashikawa-core/badge.png?branch=coverall)](https://coveralls.io/r/triAGENS/ashikawa-core)
 | Gem Version     | [![Gem Version](https://badge.fury.io/rb/ashikawa-core.png)](http://badge.fury.io/rb/ashikawa-core)
@@ -16,8 +16,6 @@ All tests run on Travis CI for the following versions of Ruby:
 * MRI 1.9.3 and 2.0.0
 * Rubinius 1.9 mode
 * JRuby 1.9 mode
-
-We also run on JRuby and MRI Head, but they are allowed failures (Please see [Travis](http://travis-ci.org/triAGENS/ashikawa-core) for their build status).
 
 Please note that the [`master`](https://github.com/triAGENS/ashikawa-core) branch is always the stable version released on Ruby Gems and documented on [RDoc](http://www.rubydoc.info/github/triAGENS/ashikawa-core). If you want the most recent version, please refer to the [`development`](https://github.com/triAGENS/ashikawa-core/tree/development) branch.
 
