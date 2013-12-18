@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 require 'faraday'
-require 'json'
 require 'ashikawa-core/response'
 
 module Ashikawa

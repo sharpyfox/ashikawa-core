@@ -1,3 +1,4 @@
+require 'json'
 require 'ashikawa-core/exceptions/client_error'
 require 'ashikawa-core/exceptions/client_error/resource_not_found'
 require 'ashikawa-core/exceptions/client_error/resource_not_found/index_not_found'
