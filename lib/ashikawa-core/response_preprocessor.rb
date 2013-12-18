@@ -27,7 +27,6 @@ module Ashikawa
         @app.call(env).on_complete do
           log(env)
           response = Response.new(env)
-          response.handle_status
           env[:body] = response.parsed_body
         end
       end

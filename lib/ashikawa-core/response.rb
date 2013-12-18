@@ -23,21 +23,7 @@ module Ashikawa
         @body = env[:body]
         @url = env[:url]
         @response_headers = env[:response_headers]
-      end
-
-      # Handle the status code
-      #
-      # @param [Hash] env Environment info
-      # @return [nil]
-      # @api private
-      def handle_status
-        case @status
-        when BadSyntaxStatus then bad_syntax
-        when AuthenticationFailed then authentication_failed
-        when ResourceNotFoundError then resource_not_found
-        when ClientErrorStatuses then client_error
-        when ServerErrorStatuses then server_error
-        end
+        handle_status
       end
 
       # Parsed version of the body
@@ -53,6 +39,21 @@ module Ashikawa
       end
 
       private
+
+      # Handle the status code
+      #
+      # @param [Hash] env Environment info
+      # @return [nil]
+      # @api private
+      def handle_status
+        case @status
+        when BadSyntaxStatus then bad_syntax
+        when AuthenticationFailed then authentication_failed
+        when ResourceNotFoundError then resource_not_found
+        when ClientErrorStatuses then client_error
+        when ServerErrorStatuses then server_error
+        end
+      end
 
       # Check if the Content Type is JSON
       #
