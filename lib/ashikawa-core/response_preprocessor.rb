@@ -25,22 +25,9 @@ module Ashikawa
       # @api private
       def call(env)
         @app.call(env).on_complete do
-          log(env)
-          response = Response.new(env)
-          env[:body] = response.parsed_body
+          @logger.info("#{env[:status]} #{env[:body]}")
+          env[:body] = Response.new(env).parsed_body
         end
-      end
-
-      private
-
-      # Log a Request
-      #
-      # @param [Hash] env Environment info
-      # @return [nil]
-      # @api private
-      def log(env)
-        @logger.info("#{env[:status]} #{env[:body]}")
-        nil
       end
     end
 
