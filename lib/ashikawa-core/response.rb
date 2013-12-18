@@ -31,11 +31,13 @@ module Ashikawa
         case @env[:status]
         when BadSyntaxStatus then bad_syntax
         when AuthenticationFailed then authentication_failed
-        when ResourceNotFoundError then resource_not_found_for
-        when ClientErrorStatuses then client_error_status_for
-        when ServerErrorStatuses then server_error_status_for
+        when ResourceNotFoundError then resource_not_found
+        when ClientErrorStatuses then client_error
+        when ServerErrorStatuses then server_error
         end
       end
+
+      private
 
       # Raise a Bad Syntax Error
       #
@@ -60,7 +62,7 @@ module Ashikawa
       # @raise [ClientError]
       # @return nil
       # @api private
-      def client_error_status_for
+      def client_error
         raise Ashikawa::Core::ClientError, error(@env[:body])
       end
 
@@ -69,7 +71,7 @@ module Ashikawa
       # @raise [ServerError]
       # @return nil
       # @api private
-      def server_error_status_for
+      def server_error
         raise Ashikawa::Core::ServerError, error(@env[:body])
       end
 
@@ -78,7 +80,7 @@ module Ashikawa
       # @raise [DocumentNotFoundException, CollectionNotFoundException, IndexNotFoundException]
       # @return nil
       # @api private
-      def resource_not_found_for
+      def resource_not_found
         raise case @env[:url].path
               when %r{\A(/_db/[^/]+)?/_api/document} then Ashikawa::Core::DocumentNotFoundException
               when %r{\A(/_db/[^/]+)?/_api/collection} then Ashikawa::Core::CollectionNotFoundException
