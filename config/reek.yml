@@ -19,7 +19,7 @@ DataClump:
 DuplicateMethodCall:
   enabled: true
   exclude:
-  - Ashikawa::Core::ResponsePreprocessor#handle_status
+  - Ashikawa::Core::Response#handle_status
   max_calls: 1
   allow_calls: []
 FeatureEnvy:
