@@ -19,7 +19,10 @@ module Ashikawa
       ServerErrorStatuses = 500...599
 
       def initialize(env)
-        @env = env
+        @status = env[:status]
+        @body = env[:body]
+        @url = env[:url]
+        @response_headers = env[:response_headers]
       end
 
       # Handle the status code
@@ -28,7 +31,7 @@ module Ashikawa
       # @return [nil]
       # @api private
       def handle_status
-        case @env[:status]
+        case @status
         when BadSyntaxStatus then bad_syntax
         when AuthenticationFailed then authentication_failed
         when ResourceNotFoundError then resource_not_found
@@ -43,8 +46,8 @@ module Ashikawa
       # @return [Hash] The parsed body
       # @api private
       def parsed_body
-        raise JSON::ParserError unless json_content_type?(@env[:response_headers]['content-type'])
-        JSON.parse(@env[:body])
+        raise JSON::ParserError unless json_content_type?
+        JSON.parse(@body)
       rescue JSON::ParserError
         raise Ashikawa::Core::JsonError
       end
@@ -56,8 +59,8 @@ module Ashikawa
       # @param [String] content_type
       # @return [Boolean]
       # @api private
-      def json_content_type?(content_type)
-        content_type == 'application/json; charset=utf-8'
+      def json_content_type?
+        @response_headers['content-type'] == 'application/json; charset=utf-8'
       end
 
       # Raise a Bad Syntax Error
@@ -84,7 +87,7 @@ module Ashikawa
       # @return nil
       # @api private
       def client_error
-        raise Ashikawa::Core::ClientError, error(@env[:body])
+        raise Ashikawa::Core::ClientError, error
       end
 
       # Raise a Server Error for a given body
@@ -93,7 +96,7 @@ module Ashikawa
       # @return nil
       # @api private
       def server_error
-        raise Ashikawa::Core::ServerError, error(@env[:body])
+        raise Ashikawa::Core::ServerError, error
       end
 
       # Raise the fitting ResourceNotFoundException
@@ -102,7 +105,7 @@ module Ashikawa
       # @return nil
       # @api private
       def resource_not_found
-        raise case @env[:url].path
+        raise case @url.path
               when %r{\A(/_db/[^/]+)?/_api/document} then Ashikawa::Core::DocumentNotFoundException
               when %r{\A(/_db/[^/]+)?/_api/collection} then Ashikawa::Core::CollectionNotFoundException
               when %r{\A(/_db/[^/]+)?/_api/index} then Ashikawa::Core::IndexNotFoundException
@@ -115,8 +118,8 @@ module Ashikawa
       # @param [String] The raw body of the request
       # @return [String] The formatted error message
       # @api private
-      def error(body)
-        parsed_body = JSON.parse(body)
+      def error
+        parsed_body = JSON.parse(@body)
         "#{parsed_body['errorNum']}: #{parsed_body["errorMessage"]}"
       end
     end
