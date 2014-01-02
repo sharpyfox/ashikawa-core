@@ -11,7 +11,7 @@ describe Ashikawa::Core::Document do
   let(:first_name) { double }
   let(:last_name) { double }
   let(:more_info) { double }
-  let(:delete_payload) {{ delete: {} }}
+  let(:delete_payload) { { delete: {} } }
   let(:raw_data) do
     {
       '_id' => id,

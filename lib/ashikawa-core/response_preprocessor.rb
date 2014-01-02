@@ -31,6 +31,6 @@ module Ashikawa
     end
 
     Faraday.register_middleware :response,
-                                ashikawa_response: -> { ResponsePreprocessor}
+                                ashikawa_response: -> { ResponsePreprocessor }
   end
 end

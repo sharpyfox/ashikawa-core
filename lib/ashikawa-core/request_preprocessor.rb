@@ -45,6 +45,6 @@ module Ashikawa
     end
 
     Faraday.register_middleware :request,
-                                ashikawa_request: -> { RequestPreprocessor}
+                                ashikawa_request: -> { RequestPreprocessor }
   end
 end

@@ -47,9 +47,6 @@ AlignParameters:
 Blocks:
   Enabled: false
 
-SymbolName:
-  Enabled: false
-
 NumericLiterals:
   Enabled: true
 

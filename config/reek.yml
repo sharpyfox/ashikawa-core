@@ -103,3 +103,6 @@ UtilityFunction:
   enabled: false
   exclude: []
   max_helper_calls: 0
+PrimaDonnaMethod:
+  enabled: false
+  exclude: []
