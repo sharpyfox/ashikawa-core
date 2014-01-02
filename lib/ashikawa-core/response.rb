@@ -13,10 +13,19 @@ module Ashikawa
   module Core
     # A response from the server
     class Response
+      # Status code for a [Bad Request](http://httpstatus.es/400)
       BadSyntaxStatus = 400
+
+      # Status code for an [Unauthorized Request](http://httpstatus.es/401)
       AuthenticationFailed = 401
+
+      # Status code for a [Not Found Resource](http://httpstatus.es/404)
       ResourceNotFoundError = 404
+
+      # All other status codes for client errors
       ClientErrorStatuses = 405...499
+
+      # All status codes for server errors
       ServerErrorStatuses = 500...599
 
       def initialize(env)
