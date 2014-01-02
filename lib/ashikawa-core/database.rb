@@ -145,24 +145,6 @@ module Ashikawa
         Ashikawa::Core::Transaction.new(self, action, collections)
       end
 
-      # Authenticate with given username and password
-      #
-      # @option [String] username
-      # @option [String] password
-      # @return [self]
-      # @raise [ArgumentError] if username or password are missing
-      # @api public
-      # @deprecated Use the initialization block instead
-      # @example Authenticate with the database for all future requests
-      #   database = Ashikawa::Core::Database.new do |config|
-      #     config.url = 'http://localhost:8529'
-      #   end
-      #   database.authenticate_with(:username => 'james', :password => 'bond')
-      def authenticate_with(options = {})
-        warn 'authenticate_with is deprecated. Please use the config block instead.'
-        @connection.authenticate_with(options)
-      end
-
       private
 
       # Parse a raw collection
